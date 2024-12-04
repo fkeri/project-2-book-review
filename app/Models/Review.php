@@ -9,6 +9,8 @@ class Review extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['review', 'rating'];
+
     // Define inverse side of one-to-many relationship between 'books' & 'reviews' tables
     public function book() {
         return $this->belongsTo(Book::class);
