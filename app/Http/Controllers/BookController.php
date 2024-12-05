@@ -51,9 +51,18 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    // Route Model Binding
+    public function show(Book $book)
     {
-        //
+        return view(
+            'books.show',
+            [
+                'book' => $book->load([
+                    // Sort books by most recent reviews
+                    'reviews' => fn($query) => $query->latest()
+                ])
+            ]
+        );
     }
 
     /**
